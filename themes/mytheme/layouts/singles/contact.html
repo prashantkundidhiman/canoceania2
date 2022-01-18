@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="container px-4 md:px-8 max-w-screen-lg mx-auto min-h-screen ">
+    <h1 class="text-3xl font-bold mb-8">{{ .Title }}</h1>
+    {{ .Content }}
+    
+    <div class="mt-6 p-4 rounded-lg bg-blue-200 shadow-md mx-4 max-w-screen-sm">
+        <ul class="space-y-3">
+            <li><span class="font-bold">Phone:</span></li>
+            <li><span class="font-bold">Email:</span></li>
+            <li><span class="font-bold">Address:</span></li>
+        </ul>
+    </div>
+</section>
+
+
+{{ end }}

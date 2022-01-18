@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="min-h-screen">
+    <div class="w-full px-5 pb-48 md:w-11/12 md:px-0 md:mx-auto xl:w-8/12">
+        <h1 class="text-4xl font-bold mb-8">{{ .Title|title }}</h1>
+        {{ .Content }}
+
+        {{range (.Paginator 5).Pages.ByLastmod.Reverse}}
+                <a href="{{.RelPermalink}}">
+                <article class="bg-gray-50 p-6 rounded-lg mb-6">
+                    <header>
+                        <h2 class="font-bold text-xl" style="font-family: Roboto;">{{ .Title | humanize }}</h2>
+                    </header>
+                    <section>
+                        {{if .Params.List_pic}}
+                            {{$pic:= .Resources.GetMatch .Params.List_pic}}
+                            <img src="{{$pic.RelPermalink}}" class="" alt="">
+                        {{end}}
+                        <p class="font-thin text-sm text-gray-600">{{.Summary}}</p>
+                    </section>                    
+                </article>
+                </a>
+        {{ end }}
+    </div>
+</section>
+
+
+{{ end }}

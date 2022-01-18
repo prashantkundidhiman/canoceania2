@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    <body class="font-sans font-normal text-base leading-relaxed text-gray-800">
+        {{ partial "header.html" . }}
+        <div id="content" class="pt-28">
+            {{ block "main" . }} {{ end }}
+        </div>
+        {{ partial "footer.html"}}
+        {{ partial "scripts.html"}}
+    </body>
+</html>

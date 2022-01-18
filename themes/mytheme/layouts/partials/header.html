@@ -1,0 +1,29 @@
+<nav id="nav-main" class="p-6 fixed w-full z-20 top-0 flex flex-wrap justify-between bg-white">
+    <!--Branding-->
+    <div class="mr-6">
+        <a href="/" class="block">
+            <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-700 to-blue-900">
+                Can-Oceania
+              </h1>
+          </a> 
+    </div>
+    <!--hamburger button-->
+    <div class="block lg:hidden">
+        <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-800 border-gray-600">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>
+        </button>
+    </div>
+    <!--links-->
+    <div id="nav-content" class="w-full lg:w-auto flex-grow pt-6 lg:pt-0 hidden lg:block">
+
+        <ul class="lg:flex justify-end">
+            {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <li class="mr-4">
+                    <a class="inline-block py-2 px-4 font-semibold {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq $currentPage.Section .Name) }} text-red-600 {{end}}" href="{{.URL}}">{{ .Name | humanize }}</a>
+                </li>
+            {{ end }}
+            
+        </ul>
+    </div>
+</nav>

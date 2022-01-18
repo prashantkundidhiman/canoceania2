@@ -1,0 +1,59 @@
+
+{{ define "main" }}
+<section>
+    <div class="w-full px-5 pb-48 md:w-11/12 md:px-0 md:mx-auto xl:w-8/12">
+        <article class="prose">
+            <header>
+                {{range (.GetTerms "categories")}}
+                        <a class="prose-gray" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+                {{end}}
+                <h1 class="mb-4">{{ .Title }}</h1>
+            
+                <p class="prose-sm prose-gray">
+                    {{if .Params.author}}By {{.Params.author}}, {{end}}{{.Lastmod.Format "Jan 2, 2006"}}
+                </p>
+            
+            </header>
+            {{.Content}}
+
+            <footer>
+                <div class="mt-6">
+                    {{range (.GetTerms "tags")}}
+                        <a class="inline-block px-2 py-1 rounded-lg bg-gray-50 font-thin text-gray-600 hover:bg-gray-100" href="{{ .Permalink }}">{{ .LinkTitle|humanize }}</a>
+                    {{end}}
+                </div>
+
+                <div class="mt-12 grid grid-cols-2 gap-4">
+                    {{ if .PrevInSection }}
+                        <a href="{{ .PrevInSection.RelPermalink}}" class="bg-gray-50 hover:bg-gray-100 text-gray-700 py-4 px-2 text-sm text-left">
+                            <span class="uppercase font-thin text-xs">Prev:</span><br> {{ .PrevInSection.Title | markdownify }}</a>
+                    {{else}}
+                        <span class="bg-gray-50"></span>
+                    {{ end }}
+        
+                    {{ if .NextInSection }}
+                        <a href="{{ .NextInSection.Permalink }}" class="bg-gray-50 hover:bg-gray-100 text-gray-700 py-4 px-2 text-sm text-right">
+                            <span class="uppercase font-thin text-xs">Next:</span><br> {{ .NextInSection.Title | markdownify }}
+                        </a>
+                    {{else}}
+                        <span class="bg-gray-50"></span>
+                    {{ end }}
+                    
+                </div>
+            </footer>
+        </article>
+        <div class="mt-12">
+            {{if (.Parent).IsHome}}
+                <a class="py-2 px-4 bg-gray-50 rounded-md" href="{{(.Parent).RelPermalink}}">Back to Home</a>
+            {{else}}
+                <a class="py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-500" href="{{(.Parent).RelPermalink}}">Back to {{(.Parent).Name}}</a>
+            {{end}}
+        </div>
+
+    </div>
+</section>
+
+
+{{end}}
+
+

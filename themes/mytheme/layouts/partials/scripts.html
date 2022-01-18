@@ -1,0 +1,20 @@
+
+<script>
+    //Javascript to toggle the menu
+    $("#nav-toggle").click(function(){
+        $("#nav-content").toggleClass("hidden");
+    });
+    $(function() {
+    var header = $("#nav-main");
+    $(window).scroll(function() {    
+        var scroll = $(window).scrollTop();
+    
+        if (scroll >= 50) {
+            header.removeClass('shadow-none').addClass("shadow-md");
+        } else {
+            header.removeClass("shadow-md").addClass('shadow-none');
+        }
+    });
+});
+</script>
+
